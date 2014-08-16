@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20140816045702) do
 
   create_table "auto_sales", force: true do |t|
     t.string   "title"
-    t.integer  "auto_id"
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -36,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140816045702) do
   end
 
   create_table "photos", force: true do |t|
-    t.integer  "auto_sale_id"
+    t.integer  "auto_id"
     t.string   "avatar"
     t.datetime "created_at"
     t.datetime "updated_at"

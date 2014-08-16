@@ -10,7 +10,8 @@ class AutoSalesController < ApplicationController
   end
   def new
     @auto_sale = AutoSale.new
-    @photo = @auto_sale.photos.build
+    @auto = @auto_sale.build_auto
+    @photos = @auto.photos.new
   end
 
   def create
@@ -18,9 +19,6 @@ class AutoSalesController < ApplicationController
 
     respond_to do |format|
       if @auto_sale.save
-        params[:photos]['avatar'].each do |a|
-          @photo = @auto_sale.photos.create!(:avatar => a, :auto_sale_id => @auto_sale.id)
-        end
         format.html { redirect_to @auto_sale, notice: 'Auto sale was successfully created.' }
         format.json { render :show, status: :created, location: @auto_sale }
       else
@@ -56,7 +54,6 @@ class AutoSalesController < ApplicationController
     end
 
     def auto_sale_params
-      params.require(:auto_sale).permit(:title, :auto_id, :price,
-                                        photos_attributes: [:auto_sale_id, :avatar])
+      params.require(:auto_sale).permit(:title, :price)
     end
 end
