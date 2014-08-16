@@ -20,29 +20,29 @@
     <%= f.number_field :price %>
   </div>
 
-  <% f.fields_for :auto, @auto, :html => { :multipart => true } do |auto_fields| %>
+  <%= f.fields_for :auto, f.object.build_auto, :html => { :multipart => true } do |auto_fields| %>
     <%= t('Car for sale') %> <br />
-    <%= auto_fields.text_field_tag :auto, nil, name: "auto[name]" %><br />
+    <%= auto_fields.text_field :name %><br />
 
     <%= t('Mode year') %> <br />
-    <%= auto_fields.select_tag :auto, options_for_select(Settings.data.year), name: "auto[year]" %> </br />
+    <%= auto_fields.select :year, options_for_select(Settings.data.year) %> </br />
 
     <%= t('Made in') %> <br />
-    <%= auto_fields.select_tag :auto, options_for_select(Settings.data.madein), name: "auto[madein]" %><br />
+    <%= auto_fields.select :madein, options_for_select(Settings.data.madein) %><br />
 
     <%= t('Type') %> <br />
-    <%= auto_fields.select_tag :auto, options_for_select(Settings.data.modeltype), name: "auto[type]" %><br />
+    <%= auto_fields.select :type, options_for_select(Settings.data.modeltype) %><br />
 
     <%= t('Color') %> <br />
-    <%= auto_fields.select_tag :auto, options_for_select(Settings.data.color), name: "auto[color]" %><br />
+    <%= auto_fields.select :color, options_for_select(Settings.data.color) %><br />
 
     <%= t('Went') %> <br />
-    <%= auto_fields.number_field_tag :auto, nil, name: "auto[went]" %><br />
+    <%= auto_fields.number_field :went %><br />
 
     <%= t('Description') %> <br />
-    <%= auto_fields.text_field_tag :auto, nil, name: "auto[description]" %><br />
+    <%= auto_fields.text_field :description %><br />
 
-    <%= auto_fields.fields_for :photos do |p| %>
+    <%= auto_fields.fields_for :photos, auto_fields.object.photos.new do |p| %>
       <div class="field">
         <%= p.label :avatar %><br>
         <%= p.file_field :avatar, :multiple => true, name: "photos[avatar][]" %>

@@ -8,14 +8,13 @@ class AutoSalesController < ApplicationController
   def show
     @photos = @auto_sale.autos.photos.all
   end
+
   def new
     @auto_sale = AutoSale.new
-    @auto = @auto_sale.build_auto
-    @photos = @auto.photos.new
   end
 
   def create
-    @auto_sale = current_user.auto_sales.new(auto_sale_params)
+    @auto_sale = AutoSale.new(auto_sale_params)
 
     respond_to do |format|
       if @auto_sale.save
@@ -54,6 +53,8 @@ class AutoSalesController < ApplicationController
     end
 
     def auto_sale_params
-      params.require(:auto_sale).permit(:title, :price)
+      params.require(:auto_sale).permit(:title, :price,
+        auto_attributes: [:name, :year, :madein, :type, :color, :went, :description]
+        )
     end
 end
