@@ -1,0 +1,53 @@
+<%= form_for(@auto_sale, :html => { :multipart => true }) do |f| %>
+  <% if @auto_sale.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@auto_sale.errors.count, "error") %> prohibited this auto_sale from being saved:</h2>
+
+      <ul>
+      <% @auto_sale.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </div>
+
+  <%= t('Car for sale') %> <br />
+  <%= text_field_tag :auto, nil, name: "auto[name]" %><br />
+
+  <%= t('Mode year') %> <br />
+  <%= select_tag :auto, options_for_select(Settings.data.year), name: "auto[year]" %> </br />
+
+  <%= t('Made in') %> <br />
+  <%= select_tag :auto, options_for_select(Settings.data.madein), name: "auto[madein]" %><br />
+
+  <%= t('Type') %> <br />
+  <%= select_tag :auto, options_for_select(Settings.data.modeltype), name: "auto[type]" %><br />
+
+  <%= t('Color') %> <br />
+  <%= select_tag :auto, options_for_select(Settings.data.color), name: "auto[color]" %><br />
+
+  <%= t('Went') %> <br />
+  <%= number_field_tag :auto, nil, name: "auto[went]" %><br />
+
+  <%= t('Description') %> <br />
+  <%= text_field_tag :auto, nil, name: "auto[description]" %><br />
+
+     <%= f.fields_for :photos do |p| %>
+     <div class="field">
+       <%= p.label :avatar %><br>
+       <%= p.file_field :avatar, :multiple => true, name: "photos[avatar][]" %>
+     </div>
+   <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

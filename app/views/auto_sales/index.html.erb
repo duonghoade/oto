@@ -1,0 +1,34 @@
+<h1>Listing auto_sales</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Auto</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @auto_sales.each do |auto_sale| %>
+      <tr>
+        <td><%= link_to auto_sale.title, auto_sale %></td>
+        <td><%= auto_sale.auto.name %> <%= auto_sale.auto.year %></td>
+        <td><%= auto_sale.price %> <%= "Triệu" %></td>
+        <td><%= auto_sale.auto.went %> <%= "Km" %></td>
+        <td><%= auto_sale.auto.color %></td>
+        <td><%= auto_sale.auto.type %></td>
+
+<!--         <% if auto_sale.owned_by? current_user %>
+          <td><%= link_to t('Edit'), edit_auto_sale_path(auto_sale) %></td>
+          <td><%= link_to t('Destroy'), auto_sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Auto sale', new_auto_sale_path %>

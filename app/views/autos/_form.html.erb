@@ -1,0 +1,45 @@
+<%= form_for(@auto) do |f| %>
+  <% if @auto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@auto.errors.count, "error") %> prohibited this auto from being saved:</h2>
+
+      <ul>
+      <% @auto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :madein %><br>
+    <%= f.text_field :madein %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :color %><br>
+    <%= f.text_field :color %>
+  </div>
+  <div class="field">
+    <%= f.label :went %><br>
+    <%= f.text_field :went %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

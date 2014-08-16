@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  year: 1
+  madein: MyString
+  type: 
+  color: MyString
+  went: MyString
+  description: MyText
+
+two:
+  name: MyString
+  year: 1
+  madein: MyString
+  type: 
+  color: MyString
+  went: MyString
+  description: MyText
